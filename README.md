@@ -14,6 +14,28 @@ Output: the reconstructed image is expected to be something like this:
 
 ![fumo](https://user-images.githubusercontent.com/44108332/73420829-d3f11380-435e-11ea-9952-e6c53128ebf0.jpg)
 
+There are two solution files; 1)Puzzle.py script and 2)Puzzle.ipynb jupyter notebook. Both solutions use the same method. 
+
+## Puzzle.py
+
+Run 'python Puzzle.py' and specify the puzzle set name. For example, 'python Puzzle.py fumo'. It will output the final and resized image into a new folder named '/result'
+
+## Puzzle.ipynb
+
+More interactive and explanation here. 
+
+### Dependencies
+
+1. OpenCV
+2. Imutils
+3. Pandas
+4. Argparse*
+5. Pathlib*
+6. Pillow*
+(* Only for Puzzle.py script)
+
+
+
 
 
 
