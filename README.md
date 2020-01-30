@@ -16,11 +16,11 @@ Output: the reconstructed image is expected to be something like this:
 
 There are two solution files; 1)Puzzle.py script and 2)Puzzle.ipynb jupyter notebook. Both solutions use the same method. 
 
-## Puzzle.py
+### Puzzle.py
 
 Run 'python Puzzle.py' and specify the puzzle set name. For example, 'python Puzzle.py fumo'. It will output the final and resized image into a new folder named '/result'
 
-## Puzzle.ipynb
+### Puzzle.ipynb
 
 More interactive and explanation here. 
 
@@ -31,7 +31,8 @@ More interactive and explanation here.
 3. Pandas
 4. Argparse*
 5. Pathlib*
-6. Pillow*
+
+
 (* Only for Puzzle.py script)
 
 

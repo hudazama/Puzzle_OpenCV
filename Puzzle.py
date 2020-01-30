@@ -4,9 +4,7 @@ import cv2
 import imutils
 import os
 import numpy as np
-from PIL import Image
 import pandas as pd
-Image.MAX_IMAGE_PIXELS = None
 
 
 def get_dir():
@@ -76,29 +74,30 @@ def rearrange(dir_folder, name):
         sorted_df = pd.concat([sorted_df, sort_df], ignore_index=True)
 
     # make a new blank image with height and width of the final rearranged puzzle
-    result = Image.new('RGB',(width*sorted_df.loc[i,'row'],height*sorted_df.loc[i,'col']))
+    canvas = np.zeros((height*sorted_df.loc[i,'col'],width*sorted_df.loc[i,'row'],3), np.uint8)
 
     # paste patches on the image
     for i in range(sorted_df.shape[0]):
-        patch = Image.open(os.path.join(dir_folder, sorted_df.loc[i,'img'] + '.jpg'))
-        y,x = patch.size
+        patch = cv2.imread(os.path.join(dir_folder, sorted_df.loc[i,'img'] + '.jpg'))
+        x, y, channels = patch.shape
         height = (sorted_df.loc[i,'col']-1)*y
         width = (sorted_df.loc[i,'row']-1)*x
-        result.paste(patch, (height,width))
+        canvas[width:width+x,height:height+y]=patch
+        
 
     # resize the image into max of 800
-    if max(result.size) > 800:
-        scale_percent = 800 / max(result.size) * 100 # percent of original size
-        width = int(result.size[0] * scale_percent / 100)
-        height = int(result.size[1] * scale_percent / 100)
+    if max(canvas.shape) > 800:
+        scale_percent = 800 / max(canvas.shape) * 100 # percent of original size
+        width = int(canvas.shape[1] * scale_percent / 100)
+        height = int(canvas.shape[0] * scale_percent / 100)
         dim = (width, height)
-        result = result.resize(dim)
+        result = cv2.resize(canvas,dim)
 
     # write the output image at output directory folder 'result'
     output_dir = 'result'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    result.save(os.path.join(output_dir,name + '.jpg'))
+    cv2.imwrite(os.path.join(output_dir,name + '.jpg'),result)
       
 if __name__ == "__main__":
     data_dir, img_name = get_dir()
