@@ -92,6 +92,9 @@ def rearrange(dir_folder, name):
         height = int(canvas.shape[0] * scale_percent / 100)
         dim = (width, height)
         result = cv2.resize(canvas,dim)
+    else:
+        result = canvas
+
 
     # write the output image at output directory folder 'result'
     output_dir = 'result'
