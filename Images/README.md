@@ -1,7 +1,7 @@
 # Images
 
-This folder contains 5 sets of puzzles in the respective zip files. 
-(Note that Galaxy has two zip files because the size is too large. Just unzip both and put them in one folder.)
+This folder contains 5 sets of puzzles in the respective zip files.
+Note that Galaxy has two zip files because the size is too large. Just unzip both and put them in one folder
 
 The expected reconstructed images are as follows:
 
