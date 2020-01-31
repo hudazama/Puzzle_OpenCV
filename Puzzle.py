@@ -27,14 +27,14 @@ def rearrange(dir_folder, name):
         image_to_process = image.copy()
         image_to_process = cv2.cvtColor(image_to_process, cv2.COLOR_BGR2HSV) 
 
-        colours = ['blue','red']
+        colours = ['red','blue']
         counter = {}
         for colour in colours:   
             counter[colour] = 0
-            if colour == 'blue':
+            if colour == 'red':
                 lower = np.array([110,200,200])
                 upper = np.array([130,255,255])
-            elif colour == 'red':
+            elif colour == 'blue':
                 lower = np.array([0,210,210])
                 upper = np.array([20,255,255])
 
@@ -80,8 +80,8 @@ def rearrange(dir_folder, name):
     for i in range(sorted_df.shape[0]):
         patch = cv2.imread(os.path.join(dir_folder, sorted_df.loc[i,'img'] + '.jpg'))
         x, y, channels = patch.shape
-        height = (sorted_df.loc[i,'col']-1)*y
-        width = (sorted_df.loc[i,'row']-1)*x
+        height = (sorted_df.loc[i,'row']-1)*y
+        width = (sorted_df.loc[i,'col']-1)*x
         canvas[width:width+x,height:height+y]=patch
         
 
